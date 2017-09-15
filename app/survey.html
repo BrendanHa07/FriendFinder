@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <title>Friend Finder: Survey</title>
 </head>
 <body>
@@ -20,7 +19,7 @@
         <input type="text" id="photo" class="form-control" required>
     <hr>
     <h3><strong>Question 1</strong></h3>
-    <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+    <h4>I prefer staying in on a Friday night.</h4>
         <select placeholder="Select an Option" id="question1">
             <option value="" selected>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
@@ -31,7 +30,7 @@
         </select>
 
         <h3><strong>Question 2</strong></h3>
-        <h4>Generally speaking, you rely more on your experience than your imagination.</h4>
+        <h4>I prefer dogs over cats any day!</h4>
             <select placeholder="Select an Option" id="question2">
                 <option value="" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -42,7 +41,7 @@
             </select>
         
         <h3><strong>Question 3</strong></h3>
-        <h4>You find it easy to stay relaxed and focused even when there is some pressure.</h4>
+        <h4>I prefer beer over wine.</h4>
             <select placeholder="Select an Option" id="question3">
                 <option value="" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -53,7 +52,7 @@
             </select>
 
         <h3><strong>Question 4</strong></h3>
-        <h4>You rarely do something just out of sheer curiosity..</h4>
+        <h4>Going to the beach always beats going to the park.</h4>
             <select placeholder="Select an Option" id="question4">
                 <option value="" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -64,7 +63,7 @@
             </select>
     
         <h3><strong>Question 5</strong></h3>
-        <h4>People can rarely upset you.</h4>
+        <h4>Decisions should be based on reason, not emotion.</h4>
              <select placeholder="Select an Option" id="question5">
                 <option value="" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -75,7 +74,7 @@
             </select>
 
         <h3><strong>Question 6</strong></h3>
-        <h4>It is often difficult for you to relate to other people’s feelings..</h4>
+        <h4>Talking is important, but listening is even more important.</h4>
             <select placeholder="Select an Option" id="question6">
                 <option value="" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -86,7 +85,7 @@
             </select>
 
         <h3><strong>Question 7</strong></h3>
-        <h4>In a discussion, truth should be more important than people’s sensitivities.</h4>
+        <h4>Having fun in everything that I do is important.</h4>
             <select placeholder="Select an Option" id="question7">
                 <option value="" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -97,7 +96,7 @@
             </select>
         
         <h3><strong>Question 8</strong></h3>
-           <h4>You rarely get carried away by fantasies and ideas.</h4>
+           <h4>Traveling is more important that having nice material things.</h4>
             <select placeholder="Select an Option" id="question8">
                 <option value="" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -108,7 +107,7 @@
             </select>
 
         <h3><strong>Question 9</strong></h3>
-        <h4>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h4>
+        <h4>Religion is important to me.</h4>
             <select placeholder="Select an Option" id="question9">
                 <option value="" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -119,7 +118,7 @@
             </select>
 
         <h3><strong>Question 10</strong></h3>
-        <h4>You feel more energetic after spending time with a group of people.</h4>
+        <h4>I prefer to be alone most of the time.</h4>
             <select placeholder="Select an Option" id="question10">
                 <option value="" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -129,8 +128,52 @@
                 <option value="5">5 (Strongly Agree)</option>
             </select>
         <hr>
-        <button class="btn btn-primary btn lg">Submit</button>
+        <button class="btn btn-primary btn lg" id="submit">Submit</button>
+
+        <div id="resultsModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Best Match</h4>
+                </div>
+                <div class="modal-body">
+                    <h2 id="matchName"></h2>
+                        <img id="matchImg" src="" alt="">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+          
+            </div>
+          </div>
 </div>
-    
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+ crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+    $('#submit').on('click', function() {
+        var userInput = {
+            name: $('#name').val().trim(),
+            photo: $('#photo').val().trim(),
+            score: [$('#question1').val().trim(), $('#question2').val().trim(), $('#question3').val().trim(), $('#question4').val().trim(), $('#question5').val().trim(), $('#question6').val().trim(), $('#question7').val().trim(), $('#question8').val().trim(), $('#question9').val().trim(), $('#question10').val().trim()]
+        }
+        var currentURL = window.location.origin;
+
+        $.post(currentURL + "/api/friends", userInput).done(function(data){
+            $('#matchName').text(data.name);
+            $('#matchImg').attr('src', data.photo);
+            $('#resultsModal').modal(toggle);
+        });
+        
+    });
+
+</script>
+
 </body>
 </html>
