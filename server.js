@@ -12,13 +12,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-app.use(express.static('app'));
+
 
 
 // Basic Routes
-require('./app/routing/apiRoutes.js')(app);
-require('./app/routing/htmlRoutes.js')(app);
-
+require('./routing/html-routes.js')(app);
+require('./routing/api-routes.js')(app);
 
 
 // Starts the server to begin listening
